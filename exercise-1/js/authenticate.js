@@ -17,11 +17,20 @@ $(function() {
         // Get email, password, and display name
         var email = $('#email').val();
         var password = $('#password').val();
-        var displayName = $('#display-name').val();
+        //var displayName = $('#display-name').val();
 
 
         // Create user, then set the user's display name
-        firebase.auth().createUserWithEmailAndOassword(email, password).then(function(user) {
+        firebase.auth().createUserWithEmailAndPassword(email, password).then(function(user) {
+            user.updateProfile({
+                displayName: $('#display-name').val(),
+            }).then(function() {
+                
+                window.location = '/';
+            });
+
+        }).catch(function(error) {
+            alert(error.message);
         });
 
                 // Set display name
@@ -47,10 +56,16 @@ $(function() {
     };
 
     // Assign event lister to form submission
-    $('form').on('submit', function() {
-    	event.preventDefault();
-    	
+       $('form').on('submit', function() {
+        console.log('hi');
+        event.preventDefault();
+        if (this.id == 'sign-up') {
+            signUp();
+        } else if (this.id == 'sign-in') {
+            signIn();
+        }
     });
+
 
 
 
