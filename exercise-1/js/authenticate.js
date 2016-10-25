@@ -22,7 +22,6 @@ $(function() {
 
         // Create user, then set the user's display name
         firebase.auth().createUserWithEmailAndOassword(email, password).then(function(user) {
-
         });
 
                 // Set display name
@@ -32,7 +31,8 @@ $(function() {
     // SignIn: Function to authenticate on Firebase, then redirect to index.html
     var signIn = function() {
         // Get email and password
-
+        var email = $('#email').val();
+        var password = $('#password').val();
 
         // Authenticate using email and password, then redirect
 
@@ -49,10 +49,7 @@ $(function() {
     // Assign event lister to form submission
     $('form').on('submit', function() {
     	event.preventDefault();
-    	console.log(this.id);
-    	if(this.id == 'sign-up'){
-    		signUp();
-    	}
+    	
     });
 
 
